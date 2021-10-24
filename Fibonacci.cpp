@@ -6,10 +6,10 @@ int main(){
 	
 	int n, t1 = 0, t2 = 1, next = 0;
 	
-	cout << "Введите количество элементов последовательности: ";
+	cout << "Enter n: ";
 	cin >> n;
 	
-	cout << "Последовательность Фибонначи: ";
+	cout << "Fibonaccis numbers: ";
 	
 	for(int i = 1; i <= n; ++i)
 	{
