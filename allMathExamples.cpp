@@ -1,4 +1,7 @@
 #include <iostream>
+#include <string>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
 
@@ -10,6 +13,8 @@ void Prime_number_between_low_and_height();
 void Max_in_Matrix();
 void Add_of_two_matrix();
 void Multiply_of_matrix();
+void Transpon_matrix();
+void Vector();
 
 
 
@@ -18,7 +23,7 @@ int main()
 	int number;
 	while (1)
 	{
-		cout << ("\n1. Col of discharge \n2. Reverse number.\n3. Palindrome\n4. Prime number \n5. Prime number between low and heigh\n6. Max in Vector\n7. Add of two matrix\n8. Multiply of matrix\n9. Find x\n10. Find z\n11. Find v\n12. Find f\n13. Exit\n");
+		cout << ("\n1. Col of discharge \n2. Reverse number.\n3. Palindrome\n4. Prime number \n5. Prime number between low and heigh\n6. Max in Vector\n7. Add of two matrix\n8. Multiply of two matrix\n9. Transpon matrix\n10. Vector \n11. Find v\n12. Find f\n13. Exit\n");
 		cout << "Enter a number of operation: ";
 		cin >> number;
 		switch (number)
@@ -47,6 +52,12 @@ int main()
 			break;
 		case 8:
 			Multiply_of_matrix();
+			break;
+		case 9:
+			Transpon_matrix();
+			break;
+		case 10:
+			Vector();
 			break;
 		case 99:
 			return 0;
@@ -209,31 +220,109 @@ void Multiply_of_matrix(){
 	cout << "Enter col of and columns of second matrix: ";
 	cin >> r2 >> c2;
 	
-	for(i = 0; i < r; ++i)
-		for(j = 0; j < c; ++j)
+	while (c1 != r2)
+	{
+		cout << "Error! Col of first matrix is not equales colf of rows in second matrix.";
+		
+		cout << "Col of rows and columns in first matrix: ";
+		cin >> r1 >> c1;
+		
+		cout << "Col of rows and columns in second matrix: ";
+		cin >> r2 >> c2;
+	}
+	
+	cout << endl << "Enter the elements of matrix 1: " << endl;
+	for(i = 0; i < r1; ++i)
+		for(j = 0; j < c1; ++j)
 		{
 			cout << "Enter an element a " << i + 1 << j + 1 << " : ";
 			cin >> a[i][j];
 		}
-	cout << endl << endl << "Enter the elements from second table: " << endl;
-	for(i = 0; i < r; ++i)
-		for(j = 0; j < c; ++j)
+	cout << endl << endl << "Enter the elements from second matrix: " << endl;
+	for(i = 0; i < r2; ++i)
+		for(j = 0; j < c2; ++j)
 		{
 			cout << "Enter the element b: " << i + 1 << j + 1 << " : ";
 			cin >> b[i][j];
 		}
 	
-	for(i = 0; i < r; ++i)
-		for(j = 0; j < c; ++j)
-			sum[i][j] = a[i][j] + b[i][j];
+	for(i = 0; i < r1; ++i)
+		for(j = 0; j < c2; ++j)
+			mult[i][j] =0;
 	
-	cout << endl << "Sum of matrix: " << endl;
+	cout << endl << "Mult of matrix: " << endl;
+	for(i = 0; i < r1; ++i)
+		for(j = 0; j < c2; ++j)
+			for(int k = 0; k < c1; ++k)
+			{
+				mult[i][j] += a[i][k] * b[k][j];	
+			}
+	
+	cout << endl<< "Result : " << endl;
+	for(i = 0; i < r1; ++i)
+	for(j = 0; j < c2; ++j)
+	{
+		cout << " " << mult[i][j] ;
+			if(j == c2 - 1)
+				cout << endl; 
+	}
+
+	cout << endl;
+}
+
+void Transpon_matrix(){
+	int r,c, a[10][10], transpose[10][10], r2, c2, k ,i, j;
+	
+	cout << "Enter col of rows and columns : ";
+	cin >> r >> c;
+	
+	cout << "Enter the elements of matrix: ";
 	for(i = 0; i < r; ++i)
 		for(j = 0; j < c; ++j)
 		{
-			cout << sum[i][j] << " ";
-			if(j == c - 1)
-				cout << endl; 
+			cout << "Enter a " << i + 1 << j + 1 << " : ";
+			cin >> a[i][j];
 		}
+	cout << "Matrix: " << endl;
+	for(i = 0; i < r; ++i)
+		for(j = 0; j < c; ++j)
+		{
+			cout  << a[i][j] << " ";
+			if(j == c - 1)
+				cout << "\n\n"; 
+		}
+	
+	for(i = 0; i < r; ++i)
+		for(j = 0; j < c; ++j)
+			transpose[i][j] = a[i][j];
+	
+	cout << "transpose of matrix: " << endl;
+	for(i = 0; i < c; ++i)
+		for(j = 0; j < r; ++j)
+		{
+			cout << transpose[i][j] << " ";
+			if(j == r - 1)
+				cout << "\n\n";
+		}
+	
+	cout << endl<< "Result : " << endl;
+
 	cout << endl;
+}
+
+void Vector(){
+	std::vector<std::string> names = {"john", "bobby", "dear", "test1",
+	"catherine", "nomi", "shinta", "martin", "abe", "may", "zeno", "zack",
+	"angeal", "gabby"};
+	
+	std::sort(names.begin(), names.end());
+	for(const auto& currentName : names)
+	{
+		std::cout << currentName << std::endl;
+	}
+	
+	for(int y = 0; y < names.size(); y++)
+	{
+		std:: cout << names[y] << std::endl;
+	}
 }
